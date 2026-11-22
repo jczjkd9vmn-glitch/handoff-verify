@@ -38,6 +38,8 @@ The comparison covers exact relative filenames, directory entries (including emp
 
 ## Contributing
 
+If your project ships a ZIP, you can [try Handoff Verify on one real release and share feedback](https://github.com/jczjkd9vmn-glitch/handoff-verify/issues/1).
+
 File an issue with a minimal directory layout, your OS and Python version, and the result you expected. Use sample filenames and data that you can share publicly. GitHub Actions runs the end-to-end tests on Windows and Linux. To run them locally:
 
 ```sh

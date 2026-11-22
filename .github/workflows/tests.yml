@@ -18,3 +18,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -B -m unittest -v
+      - name: Verify source release ZIP
+        shell: bash
+        run: |
+          release_dir=$(mktemp -d)
+          git checkout-index --all --prefix="$release_dir/reference/handoff-verify/"
+          git archive --format=zip --prefix=handoff-verify/ -o "$release_dir/release.zip" HEAD
+          python handoff_verify.py "$release_dir/reference" "$release_dir/release.zip" --json
