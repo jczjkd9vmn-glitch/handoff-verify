@@ -27,10 +27,7 @@ def scan(root: Path) -> dict[str, str | None]:
                 path = Path(child.path)
                 name = path.relative_to(root).as_posix()
                 info = child.stat(follow_symlinks=False)
-                is_junction = (
-                    getattr(info, "st_reparse_tag", 0) == stat.IO_REPARSE_TAG_MOUNT_POINT
-                )
-                if stat.S_ISDIR(info.st_mode) and not is_junction:
+                if stat.S_ISDIR(info.st_mode) and not path.is_junction():
                     entries[name] = None
                     pending.append(path)
                 elif stat.S_ISREG(info.st_mode):
